@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"snd_sally_shieldbreak",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":1.091338,
+  "exportDir":"",
+  "name":"snd_sally_shieldbreak",
+  "parent":{
+    "name":"Sally",
+    "path":"folders/Sounds/Player/Sally.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_sally_shieldbreak.wav",
+  "volume":1.0,
+}
