@@ -18,7 +18,7 @@ global.parallax = [
 scr_level_splitl(spr_aiz_tiles, "Tiles");
 scr_level_splitl(spr_aiz_tiles2, "TilesFore");
 
-if(os_type == os_ios)
+if(global.lowFx)
 {
 	layer_clear_fx("Assets_2");
 	layer_clear_fx("TilesFore");
@@ -37,5 +37,3 @@ if(os_type == os_ios)
 	layer_clear_fx("Background2");
 	layer_clear_fx("Background");
 }
-
-if(global.lowFx)
