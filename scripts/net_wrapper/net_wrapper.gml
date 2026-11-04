@@ -29,7 +29,7 @@ function net_poll()
 	var event = DisnetEvent.NONE;
 	do
 	{
-		event = disnet_poll(buffer_get_address(buffer));
+		event = net_dn_poll(buffer);
 		switch(event)
 		{
 			case DisnetEvent.CONNECTED:
@@ -68,14 +68,13 @@ function net_poll()
 			case DisnetEvent.DISCONNECTED:
 				if(global.errorCode == -1)
 				{
-					global.errorCode = buffer_read(buffer, buffer_u32);
-					if(os_type == os_ios)
-					show_message("DEBUG disconnected, code " + string(global.errorCode) + ", ever connected: " + string(isConnected));
-					
 					show_debug_message("disconnected!");
-					
+
 					buffer_seek(buffer, buffer_seek_start, 0);
 					global.errorCode = buffer_read(buffer, buffer_u32);
+					if(os_type == os_ios)
+					show_message_async("DEBUG disconnected, code " + string(global.errorCode) + ", ever connected: " + string(isConnected));
+
 					room_goto(room_message);
 				}
 				return;

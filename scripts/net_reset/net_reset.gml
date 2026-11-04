@@ -4,6 +4,6 @@ function net_reset()
 	if(instance_exists(obj_netclient))
 		instance_destroy(obj_netclient);
 	
-	disnet_reset();
+	net_dn_reset();
 	game_restart();
 }

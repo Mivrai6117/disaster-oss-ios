@@ -130,7 +130,7 @@ function net_tcpprocess(rbuff)
 				with(obj_netclient)
 				{
 					isConnected = false;
-					disnet_reset();
+					net_dn_reset();
 					
 					net_join(ip, _lobby);
 				}
