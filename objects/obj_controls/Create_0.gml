@@ -114,3 +114,4 @@ buttonSetPos = function(_btn, _x, _y)
 	
 	obj_config.save();
 }
+
