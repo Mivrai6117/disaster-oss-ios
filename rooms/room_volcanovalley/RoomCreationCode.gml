@@ -13,7 +13,7 @@ scr_level_splitl(spr_vv_tiles, "Tiles");
 scr_level_splitl(spr_vv_tiles2, "Tiles2");
 scr_level_splitl(spr_vv_tiles3, "TilesFore");
 
-if(os_type == os_android)
+if(os_type == os_ios)
 {
 	layer_clear_fx("Assets_2");
 	layer_clear_fx("TilesFore");
@@ -27,3 +27,5 @@ if(os_type == os_android)
 	layer_clear_fx("Background3");
 	layer_clear_fx("Background2");
 }
+
+if(global.lowFx)

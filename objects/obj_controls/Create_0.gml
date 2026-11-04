@@ -115,3 +115,19 @@ buttonSetPos = function(_btn, _x, _y)
 	obj_config.save();
 }
 
+// Low-effects mode for old iPhones (below iOS 16). Defaults to ON if the version can't be read.
+global.lowFx = false;
+if(os_type == os_ios)
+{
+	global.lowFx = true;
+	var _info = os_get_info();
+	if(ds_map_exists(_info, "systemVersion"))
+	{
+		var _s = string(_info[? "systemVersion"]);
+		var _p = string_pos(".", _s);
+		var _major = string_digits(_p > 0 ? string_copy(_s, 1, _p - 1) : _s);
+		if(string_length(_major) > 0)
+			global.lowFx = real(_major) < 16;
+	}
+	ds_map_destroy(_info);
+}

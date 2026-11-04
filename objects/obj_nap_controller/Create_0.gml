@@ -1,1 +1,2 @@
-optimize = os_type == os_android;
+optimize = os_type == os_ios;
+optimize = global.lowFx;

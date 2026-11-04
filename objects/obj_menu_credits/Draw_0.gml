@@ -1,4 +1,4 @@
-if(os_type == os_android && mouse_check_button(mb_any))
+if(os_type == os_ios && mouse_check_button(mb_any))
 	y -= 1.50;
 	
 if(keyboard_check(global.KeyDown))
