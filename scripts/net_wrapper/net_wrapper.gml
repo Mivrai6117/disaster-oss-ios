@@ -73,7 +73,6 @@ function net_poll()
 					buffer_seek(buffer, buffer_seek_start, 0);
 					global.errorCode = buffer_read(buffer, buffer_u32);
 					if(os_type == os_ios)
-					show_message_async("DEBUG disconnected, code " + string(global.errorCode) + ", ever connected: " + string(isConnected));
 
 					room_goto(room_message);
 				}
