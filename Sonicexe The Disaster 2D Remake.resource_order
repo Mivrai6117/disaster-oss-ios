@@ -149,7 +149,7 @@
   ],
   "ResourceOrderSettings":[
     {"name":"disasterserver","order":1,"path":"extensions/disasterserver/disasterserver.yy",},
-    {"name":"disnet_ios","order":4,"path":"extensions/disnet_ios/disnet_ios.yy",},
+    {"name":"disnet_ios","order":3,"path":"extensions/disnet_ios/disnet_ios.yy",},
     {"name":"disnet","order":2,"path":"extensions/disnet/disnet.yy",},
     {"name":"obj_abadon_cloud","order":2,"path":"objects/obj_abadon_cloud/obj_abadon_cloud.yy",},
     {"name":"obj_abandon_face","order":1,"path":"objects/obj_abandon_face/obj_abandon_face.yy",},
