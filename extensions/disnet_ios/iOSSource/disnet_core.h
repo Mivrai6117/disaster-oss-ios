@@ -42,6 +42,10 @@ enum
 #define DISNET_CHANNEL_COUNT      2
 #define DISNET_BANDWIDTH          5000000
 
+/* Background keepalive: largest packet that can be stored, and how often it is resent */
+#define DISNET_KEEPALIVE_MAX 512
+#define DISNET_KEEPALIVE_MS  500
+
 /* Returns 1.0 on success, 0.0 on failure. Safe to call more than once. */
 double disnet_core_init(void);
 
@@ -66,6 +70,19 @@ int disnet_core_poll(uint8_t *out, size_t out_cap, size_t *out_len);
 
 /* Queues a packet. reliable != 0 -> channel 0 reliable, otherwise channel 1. */
 void disnet_core_send(const uint8_t *data, size_t len, int reliable);
+
+/* Remembers a packet (sent unreliably) that the background thread resends while the
+ * game is frozen. The game refreshes it every frame with its latest position update.
+ * Pass len 0 to clear. Cleared automatically by reset / connect. */
+void disnet_core_set_keepalive(const uint8_t *data, size_t len);
+
+/* Starts a thread that keeps servicing the connection (answers pings, collects reliable
+ * events for the next poll) and resends the keepalive packet every DISNET_KEEPALIVE_MS.
+ * Call when the game is about to freeze (iOS: app resigning active). Idempotent. */
+void disnet_core_bg_start(void);
+
+/* Stops that thread and waits for it. Call when the game resumes. Idempotent. */
+void disnet_core_bg_stop(void);
 
 #ifdef __cplusplus
 }

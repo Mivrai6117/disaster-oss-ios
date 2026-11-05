@@ -68,12 +68,9 @@ function net_poll()
 			case DisnetEvent.DISCONNECTED:
 				if(global.errorCode == -1)
 				{
-					show_debug_message("disconnected!");
 
 					buffer_seek(buffer, buffer_seek_start, 0);
 					global.errorCode = buffer_read(buffer, buffer_u32);
-					if(os_type == os_ios)
-
 					room_goto(room_message);
 				}
 				return;
