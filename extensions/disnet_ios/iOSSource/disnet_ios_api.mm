@@ -202,8 +202,8 @@ const char *dnios_poll(void)
 
 double dnios_send(const char *message)
 {
-	/* "<r>:<base64>" */
-	if (!message || (message[0] != '0' && message[0] != '1') || message[1] != ':')
+	/* "<r>:<base64>"  r = 1 reliable, 0 unreliable, 2 unreliable and remembered as the keepalive packet */
+	if (!message || (message[0] != '0' && message[0] != '1' && message[0] != '2') || message[1] != ':')
 		return 0.0;
 
 	uint8_t raw[DNIOS_MAX_SEND];
@@ -211,8 +211,21 @@ double dnios_send(const char *message)
 	if (n <= 0)
 		return 0.0;
 
+	if (message[0] == '2')
+		disnet_core_set_keepalive(raw, (size_t)n);
+
 	disnet_core_send(raw, (size_t)n, message[0] == '1');
 	return 1.0;
+}
+
+void dnios_background_begin(void)
+{
+	disnet_core_bg_start();
+}
+
+void dnios_background_end(void)
+{
+	disnet_core_bg_stop();
 }
 
 double dnios_reset(void)
