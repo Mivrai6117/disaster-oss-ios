@@ -1,6 +1,5 @@
 #macro SUBMENU_NONE 0
 #macro SUBMENU_JOIN 1
-#macro SUBMENU_JOIN_MOBILE 47
 
 #macro SUBMENU_OPTIONSGENERAL 2
 #macro SUBMENU_OPTIONSCONTROLS 3
@@ -141,7 +140,7 @@ buttonListed = function(_bid, _bcolumn, _dir)
 				{
 					changeSubmenu(obj_controls.isMobile ? SUBMENU_OPTIONSCONTROLSMOBILE : SUBMENU_OPTIONSCONTROLS);
 					
-					if(os_type != os_android)
+					if(!obj_controls.isMobile)
 						buttonSelected(10, -1, -1, true);
 				}
 				else
@@ -178,7 +177,7 @@ buttonListed = function(_bid, _bcolumn, _dir)
 			{
 				changeSubmenu(obj_controls.isMobile ? SUBMENU_OPTIONSCONTROLSMOBILE : SUBMENU_OPTIONSCONTROLS);
 				
-				if(os_type != os_android)
+				if(!obj_controls.isMobile)
 					buttonSelected(10, -1, -1, true);
 			}
 			return true;
@@ -567,7 +566,6 @@ buttonSelected = function(_bid, _bcolumn, _dir, _anim)
 	switch(submenu)
 	{
 		case SUBMENU_JOIN:
-		case SUBMENU_JOIN_MOBILE:
 		{
 			if(_bid == 1)
 			{
@@ -701,7 +699,7 @@ buttonPressed = function(_bid, _bcolumn)
 			switch(_bid)
 			{
 				case 0:
-					changeSubmenu(os_type == os_android ? SUBMENU_JOIN_MOBILE : SUBMENU_JOIN);
+					changeSubmenu(SUBMENU_JOIN);
 					break;
 					
 				case 1:
@@ -729,7 +727,6 @@ buttonPressed = function(_bid, _bcolumn)
 			break;
 			
 		case SUBMENU_JOIN:
-		case SUBMENU_JOIN_MOBILE:
 			if(_bid == 0)
 			{
 				with(obj_menu_textbox)
@@ -747,22 +744,7 @@ buttonPressed = function(_bid, _bcolumn)
 			}
 			else if(_bid == 2)
 			{
-				if(os_type == os_android)
-				{
-					if(_bcolumn == 1)
-						changeSubmenu(SUBMENU_NONE);
-					else
-					{
-						if(!ServerStart())
-						{
-							show_message_async("Failed to start internal server!");
-							break;
-						}
-						net_join("127.0.0.1");
-					}
-				}
-				else
-					changeSubmenu(SUBMENU_NONE);
+				changeSubmenu(SUBMENU_NONE);
 			}
 			else
 			{
@@ -810,7 +792,7 @@ buttonPressed = function(_bid, _bcolumn)
 				{
 					changeSubmenu(obj_controls.isMobile ? SUBMENU_OPTIONSCONTROLSMOBILE : SUBMENU_OPTIONSCONTROLS);
 					
-					if(os_type != os_android)
+					if(!obj_controls.isMobile)
 						buttonSelected(8, -1, 0, false);
 				}
 				
@@ -955,7 +937,7 @@ buttonPressed = function(_bid, _bcolumn)
 			{
 				changeSubmenu(obj_controls.isMobile ? SUBMENU_OPTIONSCONTROLSMOBILE : SUBMENU_OPTIONSCONTROLS);
 				
-				if(os_type != os_android)
+				if(!obj_controls.isMobile)
 					buttonSelected(8, -1, 0, false);
 			}
 			else
@@ -1425,7 +1407,6 @@ changeSubmenu = function(_menu)
 	layer_set_visible(layer_get_id("Main2"), false);
 	layer_set_visible(layer_get_id("Main3"), false);
 	layer_set_visible(layer_get_id("JoinGame"), false);
-	layer_set_visible(layer_get_id("JoinGameMobile"), false);
 	layer_set_visible(layer_get_id("OptionsGeneral"), false);
 	layer_set_visible(layer_get_id("OptionsControls"), false);
 	layer_set_visible(layer_get_id("OptionsControlsMobile"), false);
@@ -1499,15 +1480,6 @@ changeSubmenu = function(_menu)
 			layer_set_visible(layer_get_id("JoinGame"), true);
 			break;
 			
-		case SUBMENU_JOIN_MOBILE:
-			layer_background_sprite(bars, spr_menu_bars);
-			layer_background_index(bars, 1);
-			bCount = 3;
-			bColumnCount = 5;
-			scheme = true;
-			layer_set_visible(layer_get_id("JoinGameMobile"), true);
-			break;
-		
 		case SUBMENU_OPTIONSGENERAL:
 			layer_background_sprite(bars, spr_menu_bars);
 			layer_background_index(bars, 2);
@@ -1986,7 +1958,7 @@ changeSubmenu = function(_menu)
 
 textChanged = function(_bid, _text)
 {
-	if(submenu == SUBMENU_JOIN || submenu == SUBMENU_JOIN_MOBILE)
+	if(submenu == SUBMENU_JOIN)
 	{
 		obj_config.ip = _text;
 		obj_config.save();
