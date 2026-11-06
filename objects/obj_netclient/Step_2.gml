@@ -118,6 +118,6 @@ with(global.player)
 			buffer_write(buffer, buffer_u8, bitflags);
 		}
 	
-		send_server_udp(buffer);
+		send_server_udp(buffer, (bitflags & PLAYER_ATTACKING) == 0);
 	}
 }

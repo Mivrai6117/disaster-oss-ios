@@ -719,7 +719,10 @@ buttonPressed = function(_bid, _bcolumn)
 					break;
 					
 				case 4:
-					game_end();
+					if(os_type == os_ios)
+					disnet_ios_exit(); // game_end() does nothing on iOS
+					else
+						game_end();
 					break;
 			}
 			

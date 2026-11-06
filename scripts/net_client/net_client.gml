@@ -28,12 +28,12 @@ function send_server_tcp(buffer)
 	}
 }
 
-function send_server_udp(buffer)
+function send_server_udp(buffer, keepalive = false)
 {
 	with(obj_netclient)
 	{
 		var size = buffer_tell(buffer);
-		net_dn_send(buffer, size, false);
+		net_dn_send(buffer, size, false, keepalive);
 	}
 }
 
@@ -63,11 +63,12 @@ function net_dn_reset()
 	disnet_reset();
 }
 
-function net_dn_send(buffer, size, reliable)
+function net_dn_send(buffer, size, reliable, keepalive = false)
 {
 	if(os_type == os_ios)
 	{
-		disnet_ios_send((reliable ? "1:" : "0:") + buffer_base64_encode(buffer, 0, size));
+		var mode = reliable ? "1:" : (keepalive ? "2:" : "0:");
+		disnet_ios_send(mode + buffer_base64_encode(buffer, 0, size));
 		return;
 	}
 

@@ -9,7 +9,7 @@ shader_set_uniform_f(point, posX - obj_camera.x, posY - obj_camera.y);
 shader_set_uniform_f(scale, width / 480., height / 270.0);
 shader_set_uniform_f(radius, size);
 
-if(os_type == os_android)
+if(os_type == os_ios)
 {
 	var aspect_ratio = width / height;
 	var view_w = 480;

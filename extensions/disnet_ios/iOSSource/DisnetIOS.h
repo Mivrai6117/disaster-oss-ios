@@ -16,5 +16,6 @@
 -(double) disnet_ios_send:(NSString*)message;
 -(double) disnet_ios_reset;
 -(NSString*) disnet_ios_status;
+-(double) disnet_ios_exit;
 
 @end

@@ -1,6 +1,8 @@
 function scr_controls_init_touch()
 {
 	kbdTimer = 0;
+	jKeyH = false;
+	jKeyV = false;
 	dpadX = 68;
 	dpadY = 162+25;
 	

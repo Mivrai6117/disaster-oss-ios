@@ -22,6 +22,7 @@
         {"$GMExtensionFunction":"","%Name":"disnet_ios_send","argCount":0,"args":[1,],"documentation":"","externalName":"disnet_ios_send","help":"","hidden":false,"kind":4,"name":"disnet_ios_send","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
         {"$GMExtensionFunction":"","%Name":"disnet_ios_reset","argCount":0,"args":[],"documentation":"","externalName":"disnet_ios_reset","help":"","hidden":false,"kind":4,"name":"disnet_ios_reset","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
         {"$GMExtensionFunction":"","%Name":"disnet_ios_status","argCount":0,"args":[],"documentation":"","externalName":"disnet_ios_status","help":"","hidden":false,"kind":4,"name":"disnet_ios_status","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":1,},
+        {"$GMExtensionFunction":"","%Name":"disnet_ios_exit","argCount":0,"args":[],"documentation":"","externalName":"disnet_ios_exit","help":"","hidden":false,"kind":4,"name":"disnet_ios_exit","resourceType":"GMExtensionFunction","resourceVersion":"2.0","returnType":2,},
       ],"init":"","kind":4,"name":"","origname":"","ProxyFiles":[],"resourceType":"GMExtensionFile","resourceVersion":"2.0","uncompress":false,"usesRunnerInterface":false,},
   ],
   "gradleinject":null,

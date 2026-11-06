@@ -15,8 +15,6 @@ else
 	if(chatMsg == "")
 		return;
 		
-	chatMsg = string_lower(chatMsg);
-	
 	switch(chatMsg)
 	{			
 		case ".mute":

@@ -12,7 +12,7 @@ display_reset(0, true);
 start = false;
 ind = 0;
 
-if(os_type == os_android)
+if(os_type == os_ios)
 {
 	surface_resize(application_surface, 480, 270);
 	window_set_size(480, 270);
