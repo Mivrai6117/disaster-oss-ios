@@ -1,6 +1,8 @@
 function scr_controls_init_touch()
 {
 	kbdTimer = 0;
+	jKeyH = false; // arrow keys currently held down by the touch joystick
+	jKeyV = false;
 	dpadX = 68;
 	dpadY = 162+25;
 	

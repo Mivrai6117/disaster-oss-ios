@@ -226,46 +226,64 @@ function scr_controls_update_touch()
 			var dirX = _x - obj_config.dpadX;
 			var dirY = _y - obj_config.dpadY;
 			
+			// Releasing a key makes iOS type its character into keyboard_string (which is what the
+			// chat box reads), so only release keys that this code actually pressed.
 			if(dirY > 16 * obj_config.jScale)
 			{
 				keyboard_key_press(vk_down);
 				jDir = 4;
+				jKeyV = true;
 			}
 			else if(dirY < -16 * obj_config.jScale)
 			{
 				keyboard_key_press(vk_up);
 				jDir = 3;
+				jKeyV = true;
 			}
-			else
+			else if(jKeyV)
 			{
 				keyboard_key_release(vk_up);
 				keyboard_key_release(vk_down);
+				jKeyV = false;
 			}
 			
 			if(dirX > 16 * obj_config.jScale)
 			{
 				keyboard_key_press(vk_right);
 				jDir = 2;
+				jKeyH = true;
 			}
 			else if(dirX < -16 * obj_config.jScale)
 			{
 				keyboard_key_press(vk_left);
 				jDir = 1;
+				jKeyH = true;
 			}
-			else
+			else if(jKeyH)
 			{
 				keyboard_key_release(vk_right);
 				keyboard_key_release(vk_left);
+				jKeyH = false;
 			}
 		}
 	}
 	
 	if(jTouchId == -1 || GTouchId != -1)
 	{
-		keyboard_key_release(vk_left);
-		keyboard_key_release(vk_right);
-		keyboard_key_release(vk_up);
-		keyboard_key_release(vk_down);
+		if(jKeyH)
+		{
+			keyboard_key_release(vk_left);
+			keyboard_key_release(vk_right);
+			jKeyH = false;
+		}
+		
+		if(jKeyV)
+		{
+			keyboard_key_release(vk_up);
+			keyboard_key_release(vk_down);
+			jKeyV = false;
+		}
+		
 		jDir = 0;
 	}
 }
